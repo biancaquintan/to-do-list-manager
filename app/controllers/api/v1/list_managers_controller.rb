@@ -1,12 +1,14 @@
 class Api::V1::ListManagersController < ApplicationController
   before_action :set_item, only: [:remove_item, :update_item_status]
   
+  # GET ToDo list from a user
   def list_view
     @items = User.find(params[:id]).to_do_list.items
 
     render json: @items.page(page).per(per_page).order('status ASC')
   end
   
+  # POST new item to ToDo list
   def add_item
     @item = Item.new(item_params)
     if @item.save
@@ -16,14 +18,15 @@ class Api::V1::ListManagersController < ApplicationController
     end
   end  
 
+  # DELETE an item from ToDo list
   def remove_item
     @item = Item.find(params[:id])
     @item.destroy
     render json: { status: 'SUCCESS', message:'Removed item', data: @item }, status: :ok
   end
     
+  # PUT/PATCH status item on ToDo list 
   def update_item_status
-    @item = Item.find(params[:id])
     new_status = params[:status]
 
     if @item.update(status: new_status)
