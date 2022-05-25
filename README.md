@@ -15,15 +15,19 @@ Provide API documentation
 
 <br />
 
-The API have the following features:
+The API have the following endpoints:
 
-- ToDo List View
-  (http://<localhost>/api/v1/list_managers/:id)
-- Create an item
-  (http://<localhost>/api/v1/list_managers/:id/add_item)
-- Remove an item
-  (http://<localhost>/api/v1/list_managers/:id/remove_item/:id)
-- Update an item status ( New_item, Read, Executed, Archived)
-  (http://<localhost>/api/v1/list_managers/:id/items/:id/update_status)
+- <b>ToDo List</b> <br />
+    <i>http://[localhost]/api/v1/list_managers/:id</i> <br />
+  This endpoint can be called with pagination params as below: <br />
+    <i>http://[localhost]/api/v1/list_managers/:id?page=2&per_page=10</i>
+- <b>Create an item</b> <br />
+    <i>http://[localhost]/api/v1/list_managers/:id/add_item</i>
+- <b>Remove an item</b> <br />
+    <i>http://[localhost]/api/v1/list_managers/:id/remove_item/:id</i>
+- <b>Update an item status</b> <br />
+    <i>http://[localhost]/api/v1/list_managers/:id/items/:id/update_status</i> <br />
+  By default, items are created with status <i>new_item</i>, and can be set as (<i>new_item, read, executed, archived</i>) 
+  
 
-Obs: By default, items are created with status "new_item"
+
