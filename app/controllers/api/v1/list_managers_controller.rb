@@ -4,9 +4,9 @@ class Api::V1::ListManagersController < ApplicationController
   def list_view
     @items = User.find(params[:id]).to_do_list.items
 
-    render json: @items.order('status ASC')
+    render json: @items.page(page).per(per_page).order('status ASC')
   end
-
+  
   def add_item
     @item = Item.new(item_params)
     if @item.save
